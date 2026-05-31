@@ -2,7 +2,7 @@ import Link from 'next/link';
 import {
   IconBox,
   IconCheckbox,
-  IconSeasonalSummer,
+  IconSun,
   IconBrain,
 } from '@tabler/icons-react';
 
@@ -61,7 +61,7 @@ export default function HomePage() {
 
           <div className="bg-surface border border-border rounded-2xl p-5 flex items-start gap-4">
             <div className="w-10 h-10 bg-green-dim rounded-xl flex items-center justify-center flex-shrink-0">
-              <IconSeasonalSummer size={20} className="text-green-primary" />
+              <IconSun size={20} className="text-green-primary" />
             </div>
             <div>
               <h2 className="font-semibold text-text-primary mb-1">계절별 자취 가이드</h2>

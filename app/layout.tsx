@@ -2,6 +2,9 @@ import type { Metadata } from 'next';
 import './globals.css';
 
 export const metadata: Metadata = {
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_SITE_URL ?? 'https://jachwibox.vercel.app'
+  ),
   title: '자취박스 — 첫 자취 필수템 체크리스트',
   description:
     '원룸 자취 시작할 때 사야 할 것, 방 유형별·계절별 자취 필수템을 한눈에 정리했어요.',

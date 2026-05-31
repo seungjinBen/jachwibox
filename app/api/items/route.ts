@@ -1,6 +1,8 @@
 import { supabase } from '@/lib/supabase';
 import type { RoomType } from '@/types';
 
+export const dynamic = 'force-dynamic';
+
 export async function GET(req: Request) {
   try {
     const { searchParams } = new URL(req.url);

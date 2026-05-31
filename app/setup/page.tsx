@@ -1,8 +1,9 @@
 'use client';
 
 import { useState } from 'react';
+import type { ReactNode } from 'react';
 import Link from 'next/link';
-import { IconArrowLeft, IconHome, IconLayoutSidebarLeftCollapse, IconBuilding } from '@tabler/icons-react';
+import { IconArrowLeft, IconHome, IconLayoutColumns, IconBuilding } from '@tabler/icons-react';
 import FloorPlan from '@/components/setup/FloorPlan';
 import type { RoomType } from '@/types';
 
@@ -10,7 +11,7 @@ interface RoomOption {
   type: RoomType;
   label: string;
   sublabel: string;
-  icon: React.ReactNode;
+  icon: ReactNode;
   description: string;
 }
 
@@ -26,7 +27,7 @@ const ROOM_OPTIONS: RoomOption[] = [
     type: 'separated',
     label: '원룸 (분리형)',
     sublabel: '침실 또는 주방이 구분된 구조',
-    icon: <IconLayoutSidebarLeftCollapse size={24} />,
+    icon: <IconLayoutColumns size={24} />,
     description: '원룸이지만 방이나 주방이 문 또는 벽으로 분리된 구조',
   },
   {

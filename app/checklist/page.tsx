@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useCallback } from 'react';
+import { Suspense, useState, useEffect, useCallback } from 'react';
 import { useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import { IconArrowLeft } from '@tabler/icons-react';
@@ -21,10 +21,18 @@ function getStorageKey(roomType: string) {
   return `jachwibox_checklist_${roomType}`;
 }
 
-export default function ChecklistPage() {
+const ROOM_LABELS: Record<RoomType, string> = {
+  open: '원룸 (오픈형)',
+  separated: '원룸 (분리형)',
+  two_room: '투룸 이상',
+};
+
+function ChecklistContent() {
   const searchParams = useSearchParams();
   const roomParam = searchParams.get('room') as RoomType | null;
-  const roomType: RoomType = roomParam ?? 'open';
+  const roomType: RoomType = roomParam && ['open', 'separated', 'two_room'].includes(roomParam)
+    ? roomParam
+    : 'open';
 
   const [items, setItems] = useState<ItemWithProducts[]>([]);
   const [checklist, setChecklist] = useState<ChecklistState>({});
@@ -69,10 +77,7 @@ export default function ChecklistPage() {
   const filteredItems =
     activeTab === 'all'
       ? items
-      : items.filter((item) => {
-          const cat = item as ItemWithProducts & { category_name?: string };
-          return cat.category_name === activeTab;
-        });
+      : items.filter((item) => item.category_name === activeTab);
 
   return (
     <div className="min-h-screen bg-dark">
@@ -83,10 +88,7 @@ export default function ChecklistPage() {
             <IconArrowLeft size={20} />
           </Link>
           <span className="text-sm font-medium text-text-secondary flex-1">
-            {roomType === 'open' && '원룸 (오픈형)'}
-            {roomType === 'separated' && '원룸 (분리형)'}
-            {roomType === 'two_room' && '투룸 이상'}
-            {' '}체크리스트
+            {ROOM_LABELS[roomType]} 체크리스트
           </span>
         </div>
 
@@ -136,5 +138,19 @@ export default function ChecklistPage() {
 
       <CartFab items={items} checklist={checklist} />
     </div>
+  );
+}
+
+export default function ChecklistPage() {
+  return (
+    <Suspense
+      fallback={
+        <div className="min-h-screen bg-dark flex items-center justify-center text-text-muted text-sm">
+          불러오는 중...
+        </div>
+      }
+    >
+      <ChecklistContent />
+    </Suspense>
   );
 }

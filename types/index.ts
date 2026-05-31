@@ -35,6 +35,7 @@ export interface Product {
 
 export interface ItemWithProducts extends Item {
   products: Product[];
+  category_name?: string;
 }
 
 export interface SeasonalTip {

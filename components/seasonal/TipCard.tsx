@@ -1,3 +1,4 @@
+import type { ReactNode } from 'react';
 import type { SeasonalTip, Season } from '@/types';
 import { getSeasonColor } from '@/lib/season';
 import { IconLeaf, IconSun, IconTree, IconSnowflake } from '@tabler/icons-react';
@@ -7,7 +8,7 @@ interface TipCardProps {
   season: Season;
 }
 
-const SEASON_ICONS: Record<Season, React.ReactNode> = {
+const SEASON_ICONS: Record<Season, ReactNode> = {
   spring: <IconLeaf size={16} />,
   summer: <IconSun size={16} />,
   fall: <IconTree size={16} />,
