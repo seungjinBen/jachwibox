@@ -1,22 +1,9 @@
 import Link from 'next/link';
-import {
-  IconBox,
-  IconCheckbox,
-  IconSun,
-  IconBrain,
-} from '@tabler/icons-react';
+import { IconBox, IconCheckbox, IconSun, IconBrain } from '@tabler/icons-react';
 
 export default function HomePage() {
   return (
     <div className="min-h-screen bg-dark">
-      {/* 헤더 */}
-      <header className="sticky top-0 z-50 bg-dark/90 backdrop-blur-sm border-b border-border">
-        <div className="max-w-lg mx-auto px-4 h-14 flex items-center gap-2">
-          <IconBox size={24} className="text-green-primary" />
-          <span className="text-lg font-bold text-text-primary">자취박스</span>
-        </div>
-      </header>
-
       <main className="max-w-lg mx-auto px-4 pb-16">
         {/* 히어로 섹션 */}
         <section className="pt-12 pb-10 text-center">

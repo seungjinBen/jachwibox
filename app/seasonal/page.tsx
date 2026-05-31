@@ -30,7 +30,7 @@ export default function SeasonalPage() {
   return (
     <div className="min-h-screen bg-dark">
       {/* 헤더 */}
-      <header className="sticky top-0 z-50 bg-dark/90 backdrop-blur-sm border-b border-border">
+      <header className="sticky top-14 z-20 bg-dark/90 backdrop-blur-sm border-b border-border">
         <div className="max-w-lg mx-auto px-4 h-14 flex items-center gap-3">
           <Link href="/" className="text-text-muted hover:text-text-primary transition-colors">
             <IconArrowLeft size={20} />
