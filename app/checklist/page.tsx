@@ -175,6 +175,13 @@ function ChecklistContent() {
           </span>
         </div>
 
+        <p
+          className="text-right px-4 py-1"
+          style={{ fontSize: '10px', color: '#2A4A30' }}
+        >
+          쿠팡 파트너스 활동을 통해 일정액의 수수료를 제공받을 수 있습니다
+        </p>
+
         <BudgetBar items={items} checklist={checklist} budgetGoal={budgetGoal} onGoalChange={handleBudgetGoalChange} />
 
         {/* Priority filter */}

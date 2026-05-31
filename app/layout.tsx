@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import './globals.css';
 import Header from '@/components/layout/Header';
+import Footer from '@/components/layout/Footer';
 
 export const metadata: Metadata = {
   metadataBase: new URL(
@@ -42,7 +43,10 @@ export default function RootLayout({
     <html lang="ko">
       <body className="bg-dark text-text-primary antialiased">
         <Header />
-        <div className="pt-14">{children}</div>
+        <div className="pt-14 flex flex-col min-h-[calc(100vh-3.5rem)]">
+          <div className="flex-1">{children}</div>
+          <Footer />
+        </div>
       </body>
     </html>
   );
