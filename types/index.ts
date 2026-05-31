@@ -47,11 +47,34 @@ export interface SeasonalTip {
   sort_order: number;
 }
 
+export type CookingFreq = 'never' | 'sometimes' | 'often';
+export type WorkFromHome = 'no' | 'sometimes' | 'yes';
+export type Budget = 'low' | 'mid' | 'high';
+
+export interface AiRecommendRequest {
+  room_type: RoomType;
+  season: Season;
+  cooking_freq: CookingFreq;
+  work_from_home: WorkFromHome;
+  budget: Budget;
+  has_pet: boolean;
+}
+
 export interface AiRecommendation {
   rank: number;
   item_name: string;
+  category: string;
   reason: string;
   priority: Priority;
+  estimated_price: string;
+  tip: string;
+  coupang_url?: string;
+}
+
+export interface AiRecommendResult {
+  recommendations: AiRecommendation[];
+  total_budget_estimate: string;
+  summary: string;
 }
 
 export type ChecklistState = Record<string, boolean>;

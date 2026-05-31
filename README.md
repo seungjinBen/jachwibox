@@ -14,7 +14,7 @@
 | 언어 | TypeScript (strict mode) |
 | 스타일 | Tailwind CSS v3 |
 | DB | Supabase (PostgreSQL) |
-| AI | Anthropic Claude API (claude-sonnet-4-20250514) |
+| AI | Anthropic Claude API (claude-sonnet-4-5) |
 | 배포 | Vercel |
 | 수익 | 쿠팡 파트너스 |
 
