@@ -1,4 +1,4 @@
-import { supabase } from '@/lib/supabase';
+import { supabaseAdmin } from '@/lib/supabase';
 import type { Season } from '@/types';
 
 export const dynamic = 'force-dynamic';
@@ -17,7 +17,7 @@ export async function GET(req: Request) {
       );
     }
 
-    const { data, error } = await supabase
+    const { data, error } = await supabaseAdmin
       .from('seasonal_tips')
       .select('id, season, title, content, item_id, sort_order')
       .eq('season', season)

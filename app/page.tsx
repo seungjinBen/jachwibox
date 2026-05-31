@@ -34,41 +34,59 @@ export default function HomePage() {
 
         {/* 특징 3가지 */}
         <section className="grid grid-cols-1 gap-3 mb-12">
-          <div className="bg-surface border border-border rounded-2xl p-5 flex items-start gap-4">
+          <Link
+            href="/setup"
+            className="bg-surface border border-border rounded-2xl p-5 flex items-start gap-4 hover:border-border2 hover:bg-surface2 transition-colors group"
+          >
             <div className="w-10 h-10 bg-green-dim rounded-xl flex items-center justify-center flex-shrink-0">
               <IconCheckbox size={20} className="text-green-primary" />
             </div>
-            <div>
-              <h2 className="font-semibold text-text-primary mb-1">방 유형별 맞춤 추천</h2>
+            <div className="flex-1 min-w-0">
+              <h2 className="font-semibold text-text-primary mb-1 flex items-center gap-1">
+                방 유형별 맞춤 추천
+                <span className="text-text-dim group-hover:text-text-muted transition-colors">→</span>
+              </h2>
               <p className="text-text-muted text-sm leading-relaxed">
                 원룸 오픈형, 분리형, 투룸 등 내 방 구조에 꼭 필요한 것만 추천해드려요.
               </p>
             </div>
-          </div>
+          </Link>
 
-          <div className="bg-surface border border-border rounded-2xl p-5 flex items-start gap-4">
+          <Link
+            href="/seasonal"
+            className="bg-surface border border-border rounded-2xl p-5 flex items-start gap-4 hover:border-border2 hover:bg-surface2 transition-colors group"
+          >
             <div className="w-10 h-10 bg-green-dim rounded-xl flex items-center justify-center flex-shrink-0">
               <IconSun size={20} className="text-green-primary" />
             </div>
-            <div>
-              <h2 className="font-semibold text-text-primary mb-1">계절별 자취 가이드</h2>
+            <div className="flex-1 min-w-0">
+              <h2 className="font-semibold text-text-primary mb-1 flex items-center gap-1">
+                계절별 자취 가이드
+                <span className="text-text-dim group-hover:text-text-muted transition-colors">→</span>
+              </h2>
               <p className="text-text-muted text-sm leading-relaxed">
                 여름엔 제습, 겨울엔 단열. 계절마다 놓치기 쉬운 자취 팁을 알려드려요.
               </p>
             </div>
-          </div>
+          </Link>
 
-          <div className="bg-surface border border-border rounded-2xl p-5 flex items-start gap-4">
+          <Link
+            href="/ai"
+            className="bg-surface border border-border rounded-2xl p-5 flex items-start gap-4 hover:border-border2 hover:bg-surface2 transition-colors group"
+          >
             <div className="w-10 h-10 bg-green-dim rounded-xl flex items-center justify-center flex-shrink-0">
               <IconBrain size={20} className="text-green-primary" />
             </div>
-            <div>
-              <h2 className="font-semibold text-text-primary mb-1">AI 맞춤 추천 (준비 중)</h2>
+            <div className="flex-1 min-w-0">
+              <h2 className="font-semibold text-text-primary mb-1 flex items-center gap-1">
+                AI 맞춤 추천
+                <span className="text-text-dim group-hover:text-text-muted transition-colors">→</span>
+              </h2>
               <p className="text-text-muted text-sm leading-relaxed">
-                요리 빈도, 예산, 재택 여부까지 반영한 AI 개인 추천이 곧 출시돼요.
+                요리 빈도, 예산, 생활패턴을 물어보고 딱 맞는 품목만 골라드려요.
               </p>
             </div>
-          </div>
+          </Link>
         </section>
 
         {/* 하단 CTA */}

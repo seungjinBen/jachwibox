@@ -1,10 +1,8 @@
-<svg width="200" height="56" viewBox="0 0 200 56" xmlns="http://www.w3.org/2000/svg">
+<svg width="200" height="56" viewBox="0 0 200 56" xmlns="http://www.w3.org/2000/svg" role="img">
+  <title>자취박스 로고 (라이트)</title>
   <g transform="translate(28, 28)">
-    <polyline points="-22,8 0,-20 22,8" fill="none" stroke="#4A7C59" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>
-    <rect x="-18" y="8" width="36" height="26" rx="3" fill="none" stroke="#4A7C59" stroke-width="2.8" stroke-linecap="round"/>
-    <rect x="-7" y="16" width="14" height="18" rx="2" fill="#4A7C59"/>
-    <polyline points="-15,10 -10,17 -2,6" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-    <rect x="6" y="12" width="8" height="8" rx="1.5" fill="none" stroke="#4A7C59" stroke-width="1.8"/>
+    <polyline points="-20,6 0,-14 20,6 20,18 -20,18 -20,6" fill="none" stroke="#4A7C59" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <polyline points="-11,10 -5,16 10,2" fill="none" stroke="#E8826A" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>
   </g>
-  <text x="68" y="35" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="24" font-weight="700" fill="#1A2E1C" letter-spacing="-0.5">자취박스</text>
+  <text x="64" y="34" font-family="-apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="22" font-weight="700" fill="#1A2E1C" letter-spacing="-0.5">자취박스</text>
 </svg>

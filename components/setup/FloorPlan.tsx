@@ -3,179 +3,209 @@
 import { useState } from 'react';
 import type { RoomType } from '@/types';
 
-interface FloorPlanProps {
-  roomType: RoomType;
-}
-
-interface RoomZone {
+export type FloorZone = {
   id: string;
   label: string;
-  tips: string[];
-  path: string;
-  textX: number;
-  textY: number;
-}
-
-const OPEN_ZONES: RoomZone[] = [
-  {
-    id: 'bathroom',
-    label: '욕실',
-    tips: ['샤워 호스 + 헤드', '욕실 매트', '청소 솔'],
-    path: 'M10 10 L90 10 L90 70 L10 70 Z',
-    textX: 50,
-    textY: 40,
-  },
-  {
-    id: 'kitchen',
-    label: '주방',
-    tips: ['냄비 세트', '프라이팬', '도마 + 칼'],
-    path: 'M90 10 L200 10 L200 70 L90 70 Z',
-    textX: 145,
-    textY: 40,
-  },
-  {
-    id: 'living',
-    label: '거실·침실',
-    tips: ['이불 + 베개', '암막 커튼', '수납 선반'],
-    path: 'M10 70 L200 70 L200 190 L10 190 Z',
-    textX: 105,
-    textY: 130,
-  },
-];
-
-const SEPARATED_ZONES: RoomZone[] = [
-  {
-    id: 'bathroom',
-    label: '욕실',
-    tips: ['샤워 호스 + 헤드', '욕실 매트', '청소 솔'],
-    path: 'M10 10 L90 10 L90 80 L10 80 Z',
-    textX: 50,
-    textY: 45,
-  },
-  {
-    id: 'kitchen',
-    label: '주방',
-    tips: ['냄비 세트', '프라이팬', '전자레인지'],
-    path: 'M90 10 L200 10 L200 80 L90 80 Z',
-    textX: 145,
-    textY: 45,
-  },
-  {
-    id: 'bedroom',
-    label: '침실',
-    tips: ['이불 + 베개', '매트리스 커버', '암막 커튼'],
-    path: 'M10 80 L110 80 L110 190 L10 190 Z',
-    textX: 60,
-    textY: 135,
-  },
-  {
-    id: 'living',
-    label: '거실',
-    tips: ['수납 선반', '무선 청소기', '공기청정기'],
-    path: 'M110 80 L200 80 L200 190 L110 190 Z',
-    textX: 155,
-    textY: 135,
-  },
-];
-
-const TWO_ROOM_ZONES: RoomZone[] = [
-  {
-    id: 'bathroom',
-    label: '욕실',
-    tips: ['샤워 호스 + 헤드', '욕실 매트', '수건 걸이'],
-    path: 'M10 10 L80 10 L80 70 L10 70 Z',
-    textX: 45,
-    textY: 40,
-  },
-  {
-    id: 'kitchen',
-    label: '주방',
-    tips: ['냄비 세트', '프라이팬', '밥솥'],
-    path: 'M80 10 L200 10 L200 70 L80 70 Z',
-    textX: 140,
-    textY: 40,
-  },
-  {
-    id: 'bedroom1',
-    label: '침실 1',
-    tips: ['이불 + 베개', '매트리스 커버', '암막 커튼'],
-    path: 'M10 70 L105 70 L105 130 L10 130 Z',
-    textX: 57,
-    textY: 100,
-  },
-  {
-    id: 'bedroom2',
-    label: '침실 2',
-    tips: ['이불 + 베개', '수납 선반', '암막 커튼'],
-    path: 'M105 70 L200 70 L200 130 L105 130 Z',
-    textX: 152,
-    textY: 100,
-  },
-  {
-    id: 'living',
-    label: '거실',
-    tips: ['무선 청소기', '공기청정기', '수납 선반'],
-    path: 'M10 130 L200 130 L200 190 L10 190 Z',
-    textX: 105,
-    textY: 160,
-  },
-];
-
-const ZONES_MAP: Record<RoomType, RoomZone[]> = {
-  open: OPEN_ZONES,
-  separated: SEPARATED_ZONES,
-  two_room: TWO_ROOM_ZONES,
+  sublabel?: string;
+  categories: string[];
+  x: number;
+  y: number;
+  width: number;
+  height: number;
 };
 
-export default function FloorPlan({ roomType }: FloorPlanProps) {
-  const [activeZone, setActiveZone] = useState<string | null>(null);
-  const zones = ZONES_MAP[roomType];
-  const active = zones.find((z) => z.id === activeZone);
+type FloorConfig = {
+  viewBox: string;
+  height: number;
+  zones: FloorZone[];
+};
+
+export const FLOOR_CONFIGS: Record<RoomType, FloorConfig> = {
+  open: {
+    viewBox: '0 0 300 200',
+    height: 200,
+    zones: [
+      {
+        id: '욕실',
+        label: '욕실',
+        sublabel: '화장실',
+        categories: ['욕실'],
+        x: 4, y: 4, width: 88, height: 96,
+      },
+      {
+        id: '주방',
+        label: '주방',
+        categories: ['주방'],
+        x: 100, y: 4, width: 196, height: 96,
+      },
+      {
+        id: '거실·침실',
+        label: '거실 · 침실',
+        categories: ['침실·거실', '가전', '생활'],
+        x: 4, y: 108, width: 292, height: 88,
+      },
+    ],
+  },
+  separated: {
+    viewBox: '0 0 300 200',
+    height: 200,
+    zones: [
+      {
+        id: '욕실',
+        label: '욕실',
+        sublabel: '화장실',
+        categories: ['욕실'],
+        x: 4, y: 4, width: 88, height: 96,
+      },
+      {
+        id: '주방',
+        label: '주방',
+        categories: ['주방'],
+        x: 100, y: 4, width: 196, height: 96,
+      },
+      {
+        id: '거실',
+        label: '거실',
+        categories: ['가전', '생활'],
+        x: 4, y: 108, width: 140, height: 88,
+      },
+      {
+        id: '침실',
+        label: '침실',
+        categories: ['침실·거실'],
+        x: 152, y: 108, width: 144, height: 88,
+      },
+    ],
+  },
+  two_room: {
+    viewBox: '0 0 300 240',
+    height: 240,
+    zones: [
+      {
+        id: '욕실',
+        label: '욕실',
+        sublabel: '화장실',
+        categories: ['욕실'],
+        x: 4, y: 4, width: 106, height: 76,
+      },
+      {
+        id: '주방',
+        label: '주방',
+        categories: ['주방'],
+        x: 4, y: 88, width: 106, height: 76,
+      },
+      {
+        id: '침실2',
+        label: '침실 2',
+        categories: ['침실·거실'],
+        x: 4, y: 172, width: 106, height: 64,
+      },
+      {
+        id: '거실',
+        label: '거실',
+        categories: ['가전', '생활'],
+        x: 118, y: 4, width: 178, height: 110,
+      },
+      {
+        id: '침실',
+        label: '침실',
+        categories: ['침실·거실'],
+        x: 118, y: 122, width: 178, height: 114,
+      },
+    ],
+  },
+};
+
+type Props = {
+  roomType: RoomType;
+  selectedZone?: string | null;
+  onZoneClick?: (zone: FloorZone) => void;
+  maxHeight?: number;
+};
+
+export default function FloorPlan({
+  roomType,
+  selectedZone = null,
+  onZoneClick,
+  maxHeight = 240,
+}: Props) {
+  const [hoveredZone, setHoveredZone] = useState<string | null>(null);
+  const config = FLOOR_CONFIGS[roomType];
+  const isInteractive = !!onZoneClick;
 
   return (
-    <div className="w-full">
-      <svg
-        viewBox="0 8 210 198"
-        className="w-full max-w-xs mx-auto"
-        style={{ height: 180 }}
-      >
-        {zones.map((zone) => (
-          <g key={zone.id} onClick={() => setActiveZone(zone.id === activeZone ? null : zone.id)}>
-            <path
-              d={zone.path}
-              fill={activeZone === zone.id ? '#1A3020' : '#111E14'}
-              stroke={activeZone === zone.id ? '#4A7C59' : '#1A3020'}
-              strokeWidth="2"
-              className="cursor-pointer transition-colors"
+    <svg
+      viewBox={config.viewBox}
+      className="w-full"
+      style={{ maxHeight }}
+      aria-label="방 구조 평면도"
+    >
+      <rect x="0" y="0" width="300" height={config.height} rx="8" fill="#0D1A10" />
+
+      {config.zones.map((zone) => {
+        const isSelected = selectedZone === zone.id;
+        const isHovered = isInteractive && hoveredZone === zone.id && !isSelected;
+        const cx = zone.x + zone.width / 2;
+        const cy = zone.y + zone.height / 2;
+        const textY = zone.sublabel ? cy - 9 : cy;
+
+        return (
+          <g
+            key={zone.id}
+            onClick={() => onZoneClick?.(zone)}
+            onMouseEnter={isInteractive ? () => setHoveredZone(zone.id) : undefined}
+            onMouseLeave={isInteractive ? () => setHoveredZone(null) : undefined}
+            style={{ cursor: isInteractive ? 'pointer' : 'default' }}
+          >
+            <rect
+              x={zone.x}
+              y={zone.y}
+              width={zone.width}
+              height={zone.height}
+              rx="5"
+              fill={isSelected ? '#264535' : isHovered ? '#1D2F22' : '#172418'}
+              stroke={isSelected ? '#4A7C59' : isHovered ? '#304838' : '#1E3024'}
+              strokeWidth={isSelected ? 2 : 1}
             />
+
+            {isSelected && (
+              <circle
+                cx={zone.x + zone.width - 10}
+                cy={zone.y + 10}
+                r="4"
+                fill="#4A7C59"
+              />
+            )}
+
             <text
-              x={zone.textX}
-              y={zone.textY}
+              x={cx}
+              y={textY}
               textAnchor="middle"
               dominantBaseline="middle"
-              fontSize="10"
-              fill={activeZone === zone.id ? '#7DC48A' : '#6B8F72'}
-              className="pointer-events-none select-none"
+              fill={isSelected ? '#E8F2EA' : isHovered ? '#A8C8B4' : '#5E8A6C'}
+              fontSize={zone.width < 120 ? '10' : '11'}
+              fontWeight={isSelected ? '600' : '400'}
+              fontFamily="system-ui,-apple-system,sans-serif"
             >
               {zone.label}
             </text>
-          </g>
-        ))}
-      </svg>
 
-      {active && (
-        <div className="mt-3 bg-green-dim border border-border2 rounded-xl p-3">
-          <p className="text-xs text-green-light font-semibold mb-2">{active.label} 필수템</p>
-          <ul className="space-y-1">
-            {active.tips.map((tip) => (
-              <li key={tip} className="text-xs text-text-muted flex items-center gap-1.5">
-                <span className="w-1 h-1 rounded-full bg-green-primary flex-shrink-0" />
-                {tip}
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
-    </div>
+            {zone.sublabel && (
+              <text
+                x={cx}
+                y={cy + 10}
+                textAnchor="middle"
+                dominantBaseline="middle"
+                fill={isSelected ? '#90B89E' : '#3E5A48'}
+                fontSize="9"
+                fontFamily="system-ui,-apple-system,sans-serif"
+              >
+                {zone.sublabel}
+              </text>
+            )}
+          </g>
+        );
+      })}
+    </svg>
   );
 }

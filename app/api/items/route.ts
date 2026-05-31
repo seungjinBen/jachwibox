@@ -1,4 +1,4 @@
-import { supabase } from '@/lib/supabase';
+import { supabaseAdmin } from '@/lib/supabase';
 import type { RoomType } from '@/types';
 
 export const dynamic = 'force-dynamic';
@@ -15,7 +15,7 @@ export async function GET(req: Request) {
       );
     }
 
-    const { data: categories, error: catError } = await supabase
+    const { data: categories, error: catError } = await supabaseAdmin
       .from('categories')
       .select('id, name, icon, sort_order')
       .contains('room_types', [roomType])
@@ -25,7 +25,7 @@ export async function GET(req: Request) {
 
     const categoryIds = (categories ?? []).map((c) => c.id);
 
-    const { data: items, error: itemError } = await supabase
+    const { data: items, error: itemError } = await supabaseAdmin
       .from('items')
       .select(`
         id, category_id, name, priority, room_types,

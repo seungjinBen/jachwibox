@@ -42,7 +42,7 @@ export default function Header() {
           <Link href="/" className="flex items-center" aria-label="자취박스 홈">
             {/* 데스크탑: 풀 로고 */}
             <Image
-              src="/logo/logo-dark.svg"
+              src="/logo/logo-dark-green.svg"
               alt="자취박스"
               width={160}
               height={48}
@@ -53,8 +53,8 @@ export default function Header() {
             <Image
               src="/logo/symbol-only.svg"
               alt="자취박스"
-              width={36}
-              height={36}
+              width={40}
+              height={40}
               priority
               className="block md:hidden"
             />
